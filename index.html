@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: sans-serif;
+        }
+        
+        .countdown-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            text-align: center;
+            background-color: #ddd;
+            border: 1px solid #999;
+            padding: 10px;
+            box-shadow: 0 0 5px 3px #ccc;
+        }
+        
+        .info {
+            font-size: 80px;
+        }
+        
+        .label {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="countdown-container">
+        <tr class="info">
+            <td colspan="4" class="info">Faustino's Birthday Countdown</td>
+        </tr>
+        <tr class="info">
+            <td id="days">00</td>
+            <td id="hours">00</td>
+            <td id="minutes">00</td>
+            <td id="seconds">00</td>
+        </tr>
+        <tr class="label">
+            <td>Days</td>
+            <td>Hours</td>
+            <td>Minutes</td>
+            <td>Seconds</td>
+        </tr>
+    </table>
+    <script>
+        function countdown() {
+            var EventDate = {
+                day: 7,
+                month: 6,
+                year: 2021
+            }
+            var currentTime = new Date().getTime();
+            var eventTime = new Date(EventDate.year, EventDate.month, EventDate.day).getTime();
+
+            var remTime = eventTime - currentTime;
+
+
+            var s = Math.floor(remTime / 1000);
+            var m = Math.floor(s / 60);
+            var h = Math.floor(m / 60);
+            var d = Math.floor(h / 24);
+
+            h %= 24;
+            m %= 60;
+            s %= 60;
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            document.getElementById("days").textContent = d;
+            document.getElementById("hours").textContent = h;
+            document.getElementById("minutes").textContent = m;
+            document.getElementById("seconds").textContent = s;
+
+            setTimeout(countdown, 1000);
+        }
+
+        countdown();
+    </script>
+</body>
+
+</html>
